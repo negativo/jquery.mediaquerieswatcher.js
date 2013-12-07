@@ -5,7 +5,7 @@
         base.$el = $(el);
         base.el = el;
         base.$el.data("mediaquerieswatcher", base);
-        
+
         base.foundationRules = [
             { name: 'mobile', rule: 'and (max-width: 40em)', info: 'max-width 640px, mobile-only styles' },
             { name: 'medium', rule: 'and (min-width: 40em)', info: 'min-width 641px, medium screens' },
@@ -20,23 +20,39 @@
             for(var i in base.foundationRules){
                 var thisMedia = base.foundationRules[i];
                 if(window.matchMedia('only screen '+thisMedia.rule).matches){
-                    rootEl.html(thisMedia.name+' screen<br/> '+thisMedia.info+'<br/>rule: <br/>&nbsp;&nbsp;'+thisMedia.rule);
+                    rootEl.find('.content').html('SCREEN SIZE: '+thisMedia.name+'<br/> '+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'<br/>rule: <br/>&nbsp;&nbsp;'+thisMedia.rule);
                 }
             }
         };
         base.setup = function(){
-            $('body').append($('<div id="mediaquerieswatcher" />'));
-            rootEl = $('body').find('#mediaquerieswatcher');
+            $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"></div><div class="content"></div></div>'));
+            $('#mediaquerieswatcher').addClass(base.options.position);
+            rootEl = $('#mediaquerieswatcher');
         };
-        window.addEventListener('resize', this.checkMedia, false);
         base.init = function(){
             base.options = $.extend({},$.mediaquerieswatcher.defaultOptions, options);
             base.setup();
             base.checkMedia();
         }();
+
+
+        window.addEventListener('resize', this.checkMedia, false);
+
     };
     $.mediaquerieswatcher.defaultOptions = {
         lib: "foundation4",
+        position: "top-center", 
+        /* 
+            "top-left" 
+            "top-center" 
+            "top-right" 
+            "middle-left" 
+            "middle-center" 
+            "middle-right" 
+            "bottom-left" 
+            "bottom-center" 
+            "bottom-right"
+        */    
     };
     $.fn.mediaquerieswatcher = function(view, options){
         return this.each(function(){

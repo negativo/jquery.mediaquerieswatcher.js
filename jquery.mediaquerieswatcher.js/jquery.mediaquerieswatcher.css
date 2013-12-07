@@ -1,10 +1,54 @@
-#mediaquerieswatcher{
+#mediaquerieswatcher {
   font-family: "Arial";
-  font-size:14pt;
-  padding:20px;
-  border:1px solid #000;
-  width:300px;
-  position:absolute;
-  left:20px;
-  top:20px;
+  font-size: 14pt;
+  padding: 20px;
+  border: 1px solid #000;
+  width: 300px;
+  position: absolute;
+}
+#mediaquerieswatcher.top-left {
+  left: 20px;
+  top: 20px;
+}
+#mediaquerieswatcher.top-center {
+  top: 20px;
+  left: 50%;
+  margin-left: -150px;
+}
+#mediaquerieswatcher.top-right {
+  right: 20px;
+  top: 20px;
+}
+#mediaquerieswatcher.middle-left {
+  left: 20px;
+  top: 50%;
+  margin-top: -150px;
+}
+#mediaquerieswatcher.middle-center {
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  margin-top: -150px;
+}
+#mediaquerieswatcher.middle-right {
+  right: 20px;
+  top: 50%;
+  margin-top: -150px;
+}
+#mediaquerieswatcher.bottom-left {
+  left: 20px;
+  bottom: 20px;
+}
+#mediaquerieswatcher.bottom-center {
+  left: 50%;
+  margin-left: -150px;
+  bottom: 20px;
+}
+#mediaquerieswatcher.bottom-right {
+  left: 20px;
+  bottom: 20px;
+}
+#mediaquerieswatcher .buttons,
+#mediaquerieswatcher .content {
+  clear: both;
 }

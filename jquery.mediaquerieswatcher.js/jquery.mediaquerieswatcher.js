@@ -6,7 +6,7 @@
         base.el = el;
         base.$el.data("mediaquerieswatcher", base);
 
-        base.foundationRules = [
+        base.foundation5Rules = [
             { name: 'mobile', rule: 'and (max-width: 40em)', info: 'max-width 640px, mobile-only styles' },
             { name: 'medium', rule: 'and (min-width: 40em)', info: 'min-width 641px, medium screens' },
             { name: 'medium', rule: 'and (min-width: 40.063em) and (max-width: 64em)', info: 'min-width 641px and max-width 1024px' },
@@ -17,10 +17,10 @@
             { name: 'xlarge', rule: 'and (min-width: 120em) ', info: 'min-width 1921px, xlarge screens' }
         ];
          base.checkMedia = function() {
-            for(var i in base.foundationRules){
-                var thisMedia = base.foundationRules[i];
+            for(var i in base.foundation5Rules){
+                var thisMedia = base.foundation5Rules[i];
                 if(window.matchMedia('only screen '+thisMedia.rule).matches){
-                    rootEl.find('.content').html('SCREEN SIZE: '+thisMedia.name+'<br/> '+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'<br/>rule: <br/>&nbsp;&nbsp;'+thisMedia.rule);
+                    rootEl.find('.content').html('<div><span>screen size: </span>'+thisMedia.name+'</div><div><span>actual pixels: </span>'+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'</div><div><span>responsive rule:</span>@media only screen '+thisMedia.rule+'</div>');
                 }
             }
         };
@@ -40,7 +40,7 @@
 
     };
     $.mediaquerieswatcher.defaultOptions = {
-        lib: "foundation4",
+        lib: "foundation5",
         position: "top-center", 
         /* 
             "top-left" 

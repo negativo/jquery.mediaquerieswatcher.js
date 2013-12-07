@@ -1,4 +1,14 @@
 @boxWidth: 300px;
+@mainColor:#631e2f;
+@secondaryColor:#993256;
+@fontColor:#fcf1e5;
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
 #mediaquerieswatcher{
 	font-family: "Arial";
 	font-size:14pt;
@@ -6,6 +16,18 @@
 	border:1px solid #000;
 	width:@boxWidth;
 	position:absolute;
+	background-color: @mainColor;
+	border:2px solid @secondaryColor;
+	color: @fontColor;
+	div{
+		clear:both;
+		color:darken(@fontColor, 10%);
+		span{
+			font-weight: bold; 
+			color: lighten(@fontColor, 10%);
+		}
+	}
+	.rounded-corners;
 	&.top-left{
 		left:20px;
 		top:20px;

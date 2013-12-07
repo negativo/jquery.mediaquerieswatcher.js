@@ -5,6 +5,22 @@
   border: 1px solid #000;
   width: 300px;
   position: absolute;
+  background-color: #631e2f;
+  border: 2px solid #993256;
+  color: #fcf1e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+#mediaquerieswatcher div {
+  clear: both;
+  color: #f7d8b7;
+}
+#mediaquerieswatcher div span {
+  font-weight: bold;
+  color: #ffffff;
 }
 #mediaquerieswatcher.top-left {
   left: 20px;

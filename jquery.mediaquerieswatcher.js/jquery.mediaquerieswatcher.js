@@ -5,6 +5,7 @@
         base.$el = $(el);
         base.el = el;
         base.$el.data("mediaquerieswatcher", base);
+        
         base.foundationRules = [
             { name: 'mobile', rule: 'and (max-width: 40em)', info: 'max-width 640px, mobile-only styles' },
             { name: 'medium', rule: 'and (min-width: 40em)', info: 'min-width 641px, medium screens' },
@@ -35,11 +36,11 @@
         }();
     };
     $.mediaquerieswatcher.defaultOptions = {
-        lib: "foundation",
+        lib: "foundation4",
     };
     $.fn.mediaquerieswatcher = function(view, options){
         return this.each(function(){
-            (new $.mediaquerieswatcher(this, view, options));
+            (new $.mediaquerieswatcher(tshis, view, options));
             $this = $(this);
         });
     };

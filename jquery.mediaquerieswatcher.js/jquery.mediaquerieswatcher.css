@@ -1,0 +1,10 @@
+#mediaquerieswatcher{
+  font-family: "Arial";
+  font-size:14pt;
+  padding:20px;
+  border:1px solid #000;
+  width:300px;
+  position:absolute;
+  left:20px;
+  top:20px;
+}

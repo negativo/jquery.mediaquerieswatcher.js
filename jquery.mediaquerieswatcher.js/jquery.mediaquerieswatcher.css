@@ -68,3 +68,7 @@
 #mediaquerieswatcher .content {
   clear: both;
 }
+#mediaquerieswatcher .rules {
+  height: 200px;
+  overflow-y: scroll;
+}

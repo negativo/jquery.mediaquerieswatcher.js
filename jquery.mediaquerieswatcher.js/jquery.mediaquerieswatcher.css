@@ -1,11 +1,12 @@
 #mediaquerieswatcher {
+  z-index: 1000;
   font-family: "Arial";
   font-size: 14pt;
   padding: 20px;
   border: 1px solid #000;
   width: 300px;
   position: absolute;
-  background-color: #631e2f;
+  background-color: rgba(99, 30, 47, 0.7);
   border: 2px solid #993256;
   color: #fcf1e5;
   -webkit-border-radius: 5px;

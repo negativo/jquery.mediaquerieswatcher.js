@@ -1,3 +1,5 @@
+
+
 (function($,window,document){
     $.mediaquerieswatcher = function(options, el){
         var base = this;
@@ -24,25 +26,16 @@
         ]};
 
         base.checkMedia = function() {
-            
-                
-                var theLib = base.rules[base.options.lib];
-                
-                
-                    
-                    for(var i in theLib){
-                        console.log(theLib[i]);
-                        var thisMedia = theLib[i];
-                        if(window.matchMedia('only screen '+thisMedia.rule).matches){
-                            rootEl.find('.content').html('<div><span>screen size: </span>'+thisMedia.name+'</div><div><span>actual pixels: </span>'+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'</div><div><span>responsive rule:</span>@media only screen '+thisMedia.rule+'</div>');
-                        }
-                    }        
-                
-            
-            
+            var theLib = base.rules[base.options.lib];
+            for(var i in theLib){
+                var thisMedia = theLib[i];
+                if(window.matchMedia('only screen '+thisMedia.rule).matches){
+                    rootEl.find('.content').html('<div><span>screen size: </span>'+thisMedia.name+'</div><div><span>actual pixels: </span>'+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'</div><div><span>responsive rule:</span>@media only screen '+thisMedia.rule+'</div>');
+                }
+            }                
         };
         base.setup = function(){
-            $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"></div><div class="content"></div></div>'));
+            $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"></div><div class="content"></div><div class="rules"></div></div>'));
             $('#mediaquerieswatcher').addClass(base.options.position);
             rootEl = $('#mediaquerieswatcher');
         };
@@ -51,7 +44,111 @@
             base.setup();
             base.checkMedia();
         }();
+
+        function getStyleObject(el){
+            var values = {},style;
+            if(window.getComputedStyle){
+                var camelize = function(a,b){
+                    return b.toUpperCase();
+                };
+                style = window.getComputedStyle(el, null);
+                for(var i = 0, l = style.length; i < l; i++){
+                    var prop = style[i];
+                    var camel = prop.replace(/\-([a-z])/g, camelize);
+                    var val = style.getPropertyValue(prop);
+                    values[camel] = val;
+                };
+                return values;
+            };
+            if(style = el.currentStyle){
+                for(var prop in style){
+                    values[prop] = style[prop];
+                };
+                return values;
+            };
+            return this.css();
+        }
+
+
+
+
+
+function getAllStyles(elem) {
+    if (!elem) return []; // Element does not exist, empty list.
+    var win = document.defaultView || window, style, styleNode = [];
+    if (win.getComputedStyle) { /* Modern browsers */
+        style = win.getComputedStyle(elem, '');
+        for (var i=0; i<style.length; i++) {
+            styleNode.push( style[i] + ':' + style.getPropertyValue(style[i]) );
+            //               ^name ^           ^ value ^
+        }
+    } else if (elem.currentStyle) { /* IE */
+        style = elem.currentStyle;
+        for (var name in currentStyle) {
+            styleNode.push( name + ':' + currentStyle[name] );
+        }
+    } else { /* Ancient browser..*/
+        style = elem.style;
+        for (var i=0; i<style.length; i++) {
+            styleNode.push( style[i] + ':' + style[style[i]] );
+        }
+    }
+    return styleNode;
+}
+
+    function getStylez(el){
+        var comp = el.currentStyle || getComputedStyle(el, null);
+        return comp;
+    }
+
+
+
+var allStyleSheets = document.styleSheets;
+function getRules(el){
+    var rulez = [];
+    for(var i in allStyleSheets){
+        var sheet = allStyleSheets[i];
+        var sheetRules=sheet.cssRules? sheet.cssRules: sheet.rules;
+        
+        for (var j in sheetRules){
+            
+            var sr = sheetRules[j];
+            var text = sr.cssText;
+            console.dir(el);
+            if(text.indexOf(el)!=-1){
+               rulez.push(sheetRules[j]);
+            }
+        }
+    }
+    return rulez;
+}
+/*
+        var mysheet=document.styleSheets[0]
+
+
+var myrules=mysheet.cssRules? mysheet.cssRules: mysheet.rules
+mysheet.crossdelete=mysheet.deleteRule? mysheet.deleteRule : mysheet.removeRule
+for (i=0; i<myrules.length; i++){
+    if(myrules[i].selectorText.toLowerCase().indexOf("#test")!=-1){
+       mysheet.crossdelete(i)
+    }
+}
+*/
         window.addEventListener('resize', this.checkMedia, false);
+        
+        $('*').each(function(){
+            $(this).click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var rulez = window.getMatchedCSSRules(this);
+                rootEl.find('.rules').html(' ');
+                for(var i in rulez){
+                    if(rulez[i].cssText){
+                        rootEl.find('.rules').append('<br/>'+rulez[i].cssText)
+                    }
+                }
+            });
+        });
     };
     $.mediaquerieswatcher.defaultOptions = {
         lib: "foundation5",

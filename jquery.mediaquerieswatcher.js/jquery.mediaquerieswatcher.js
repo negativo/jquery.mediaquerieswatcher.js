@@ -2,12 +2,13 @@
 
 (function($,window,document){
     $.mediaquerieswatcher = function(options, el){
-        var base = this;
-        var rootEl = "";
+        var base = this,
+            rootEl = "",
+            lib = "",
+            allStyleSheets = document.styleSheets;
         base.$el = $(el);
         base.el = el;
         base.$el.data("mediaquerieswatcher", base);
-        var lib = "";
         base.rules= { foundation5: [
             { name: 'mobile', rule: 'and (max-width: 40em)', info: 'max-width 640px, mobile-only styles' },
             { name: 'medium', rule: 'and (min-width: 40em)', info: 'min-width 641px, medium screens' },
@@ -24,7 +25,6 @@
             { name: 'md - medium', rule: 'and (min-width: 992px) and (max-width: 1199px)', info: 'min-width 992px and max-width 1199px' },
             { name: 'lg - large', rule: 'and (min-width: 1200px)', info: 'min-width: 1200px' },
         ]};
-
         base.checkMedia = function() {
             var theLib = base.rules[base.options.lib];
             for(var i in theLib){
@@ -45,78 +45,18 @@
             base.setup();
             base.checkMedia();
         }();
-
-        function getStyleObject(el){
-            var values = {},style;
-            if(window.getComputedStyle){
-                var camelize = function(a,b){
-                    return b.toUpperCase();
-                };
-                style = window.getComputedStyle(el, null);
-                for(var i = 0, l = style.length; i < l; i++){
-                    var prop = style[i];
-                    var camel = prop.replace(/\-([a-z])/g, camelize);
-                    var val = style.getPropertyValue(prop);
-                    values[camel] = val;
-                };
-                return values;
-            };
-            if(style = el.currentStyle){
-                for(var prop in style){
-                    values[prop] = style[prop];
-                };
-                return values;
-            };
-            return this.css();
-        }
-
-
-
-
-
-        function getAllStyles(elem) {
-            if (!elem) return []; // Element does not exist, empty list.
-            var win = document.defaultView || window, style, styleNode = [];
-            if (win.getComputedStyle) { /* Modern browsers */
-                style = win.getComputedStyle(elem, '');
-                for (var i=0; i<style.length; i++) {
-                    styleNode.push( style[i] + ':' + style.getPropertyValue(style[i]) );
-                    //               ^name ^           ^ value ^
-                }
-            } else if (elem.currentStyle) { /* IE */
-                style = elem.currentStyle;
-                for (var name in currentStyle) {
-                    styleNode.push( name + ':' + currentStyle[name] );
-                }
-            } else { /* Ancient browser..*/
-                style = elem.style;
-                for (var i=0; i<style.length; i++) {
-                    styleNode.push( style[i] + ':' + style[style[i]] );
-                }
-            }
-            return styleNode;
-        }
-
         function getStylez(el){
             var comp = el.currentStyle || getComputedStyle(el, null);
             return comp;
         }
-
-
-
-        var allStyleSheets = document.styleSheets;
-
         function getRules(el){
             var rulex = [];
             for(var i in allStyleSheets){
                 var sheet = allStyleSheets[i];
                 var sheetRules=sheet.cssRules? sheet.cssRules: sheet.rules;
-                
                 for (var j in sheetRules){
-                    
                     var sr = sheetRules[j];
                     var text = sr.cssText;
-                    console.dir(el);
                     if(text.indexOf(el)!=-1){
                        rulex.push(sheetRules[j]);
                     }
@@ -138,11 +78,9 @@
                 var rujes = [];
                 for(var i in rulez){
                     if(rulez[i].cssText){
-                        var theText = rulez[i].cssText;
-                        var count = theText.match(/^(,*)/)[0].length;
-                        if(count<8){
-                            rujes.push(theText);
-                        }
+                        var theText = rulez[i].cssText,
+                            count = theText.match(/^(,*)/)[0].length;
+                        rujes.push(theText);
                     }
                 }
                 rujes.reverse();

@@ -1,6 +1,8 @@
 @boxWidth: 300px;
-@mainColor:rgba(28, 24, 9, 0.5);
-@secondaryColor:#997839;
+@mainColor:rgba(28, 24, 9, 0.7);
+@secondaryColor:rgba(153, 120, 57, 0.7);
+@thirdColor:rgba(19, 39, 54, 0.7);
+@fourthColor:rgba(38, 30, 8, 0.7);
 @fontColor:#81CCCF;
 @fontColor1:#fcf1e5;
 @fontColor2:#5DCCCF;
@@ -77,6 +79,32 @@
     }
 	.buttons,.content{
 		clear:both;
+	}
+	.buttons{
+		height: 20px;
+
+		div{
+			clear: none;
+			cursor:pointer;
+			width:15px;
+			height:15px;
+			paddind:1px;
+			border:1px solid #fff;
+			float:left; 
+			margin-left:15px;
+			&.maincolor{
+				background-color: @mainColor;	
+			}
+			&.secondarycolor{
+				background-color: @secondaryColor;	
+			}
+			&.thirdcolor{
+				background-color: @thirdColor;	
+			}
+			&.fourthcolor{
+				background-color: @fourthColor;	
+			}
+		}
 	}
 	.rules{
 		height:200px;

@@ -5,8 +5,8 @@
   padding: 20px;
   width: 300px;
   position: fixed;
-  background-color: rgba(28, 24, 9, 0.5);
-  border: 1px solid #997839;
+  background-color: rgba(28, 24, 9, 0.7);
+  border: 1px solid rgba(153, 120, 57, 0.7);
   color: #81cccf;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -66,6 +66,31 @@
 #mediaquerieswatcher .buttons,
 #mediaquerieswatcher .content {
   clear: both;
+}
+#mediaquerieswatcher .buttons {
+  height: 20px;
+}
+#mediaquerieswatcher .buttons div {
+  clear: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  paddind: 1px;
+  border: 1px solid #fff;
+  float: left;
+  margin-left: 15px;
+}
+#mediaquerieswatcher .buttons div.maincolor {
+  background-color: rgba(28, 24, 9, 0.7);
+}
+#mediaquerieswatcher .buttons div.secondarycolor {
+  background-color: rgba(153, 120, 57, 0.7);
+}
+#mediaquerieswatcher .buttons div.thirdcolor {
+  background-color: rgba(19, 39, 54, 0.7);
+}
+#mediaquerieswatcher .buttons div.fourthcolor {
+  background-color: rgba(38, 30, 8, 0.7);
 }
 #mediaquerieswatcher .rules {
   height: 200px;

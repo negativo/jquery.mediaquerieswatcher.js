@@ -35,7 +35,7 @@
             }                
         };
         base.setup = function(){
-            $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"></div><div class="content"></div><div class="rules"></div></div>'));
+            $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"><div class="maincolor"></div><div class="secondarycolor"></div><div class="thirdcolor"></div><div class="fourthcolor"></div></div><div class="content"></div><div class="rules"></div></div>'));
             $('#mediaquerieswatcher').addClass(base.options.position);
             rootEl = $('#mediaquerieswatcher');
             rootEl.find('.rules').hide();
@@ -125,7 +125,9 @@
             return rulex;
         }
         window.addEventListener('resize', this.checkMedia, false);
-        
+        $('.buttons').find('div').click(function(){
+            rootEl.css('background-color',$(this).css('background-color'));
+        });
         $('*').each(function(){
             $(this).click(function(e){
                 e.preventDefault();

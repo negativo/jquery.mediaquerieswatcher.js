@@ -38,6 +38,7 @@
             $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"></div><div class="content"></div><div class="rules"></div></div>'));
             $('#mediaquerieswatcher').addClass(base.options.position);
             rootEl = $('#mediaquerieswatcher');
+            rootEl.find('.rules').hide();
         };
         base.init = function(){
             base.options = $.extend({},$.mediaquerieswatcher.defaultOptions, options);
@@ -130,6 +131,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 var rulez = window.getMatchedCSSRules(this);
+                
                 rootEl.find('.rules').html(' ');
                 var rujes = [];
                 for(var i in rulez){
@@ -143,7 +145,13 @@
                 }
                 rujes.reverse();
                 for(var i in rujes){
-                    rootEl.find('.rules').append('<br/>'+rujes[i]);    
+                    var string = rujes[i];
+                    var first = string.replace('{','{<div>');
+                    var last = first.replace('}','</div>}');
+                    rootEl.find('.rules').append('<br/>'+last);    
+                }
+                if(rootEl.find('.rules').html() != ' ') { 
+                    rootEl.find('.rules').show();
                 }
             });
         });

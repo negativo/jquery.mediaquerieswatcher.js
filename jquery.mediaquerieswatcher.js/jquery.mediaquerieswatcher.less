@@ -1,7 +1,12 @@
 @boxWidth: 300px;
-@mainColor:rgba(99, 30, 47, 0.7);
-@secondaryColor:#993256;
-@fontColor:#fcf1e5;
+@mainColor:rgba(28, 24, 9, 0.5);
+@secondaryColor:#997839;
+@fontColor:#81CCCF;
+@fontColor1:#fcf1e5;
+@fontColor2:#5DCCCF;
+@fontColor3:#fcf1e5;
+
+
 .rounded-corners (@radius: 5px) {
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
@@ -12,23 +17,22 @@
 #mediaquerieswatcher{
 	z-index: 1000;
 	font-family: "Arial";
-	font-size:14pt;
+	font-size:11pt;
 	padding:20px;
-	border:1px solid #000;
 	width:@boxWidth;
 	position:fixed;
 	background-color: @mainColor;
-	border:2px solid @secondaryColor;
+	border:1px solid @secondaryColor;
 	color: @fontColor;
 	div{
 		clear:both;
-		color:darken(@fontColor, 10%);
+		color:@fontColor1;
 		span{
-			font-weight: bold; 
-			color: lighten(@fontColor, 10%);
+			 
+			color: @fontColor;
 		}
 	}
-	.rounded-corners;
+	.rounded-corners(3px);
 	&.top-left{
 		left:20px;
 		top:20px;
@@ -77,5 +81,10 @@
 	.rules{
 		height:200px;
 		overflow-y: scroll;
+		font-size: 10pt;
+		color: @fontColor2;
+		div{
+			color: @fontColor1;
+		}
 	}
 }

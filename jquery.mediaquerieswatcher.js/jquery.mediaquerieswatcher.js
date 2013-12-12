@@ -35,13 +35,23 @@
             }                
         };
         base.setup = function(){
-            $('body').append($('<div id="mediaquerieswatcher" ><div class="buttons"><div class="maincolor"></div><div class="secondarycolor"></div><div class="thirdcolor"></div><div class="fourthcolor"></div></div><div class="content"></div><div class="rules"></div></div>'));
+            var baseHtml = '<div id="mediaquerieswatcher" >'+
+                                '<div class="buttons">'+
+                                    '<div class="maincolor"></div>'+
+                                    '<div class="secondarycolor"></div>'+
+                                    '<div class="thirdcolor"></div>'+
+                                    '<div class="fourthcolor"></div>'+
+                                '</div>'+
+                                '<div class="content"></div>'+
+                                '<div class="rules"></div>'+
+                            '</div>';
+            $('body').append($(baseHtml));
             $('#mediaquerieswatcher').addClass(base.options.position);
             rootEl = $('#mediaquerieswatcher');
             rootEl.find('.rules').hide();
         };
         base.init = function(){
-            base.options = $.extend({},$.mediaquerieswatcher.defaultOptions, options);
+            base.options = $.extend( {}, $.mediaquerieswatcher.defaultOptions, options );
             base.setup();
             base.checkMedia();
         }();
@@ -52,13 +62,13 @@
         function getRules(el){
             var rulex = [];
             for(var i in allStyleSheets){
-                var sheet = allStyleSheets[i];
-                var sheetRules=sheet.cssRules? sheet.cssRules: sheet.rules;
+                var sheet = allStyleSheets[i],
+                    sheetRules=sheet.cssRules ? sheet.cssRules: sheet.rules;
                 for (var j in sheetRules){
-                    var sr = sheetRules[j];
-                    var text = sr.cssText;
+                    var sr = sheetRules[j],
+                        text = sr.cssText;
                     if(text.indexOf(el)!=-1){
-                       rulex.push(sheetRules[j]);
+                        rulex.push(sheetRules[j]);
                     }
                 }
             }
@@ -72,10 +82,10 @@
             $(this).click(function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                var rulez = window.getMatchedCSSRules(this);
-                
+                var rulez = window.getMatchedCSSRules(this),
+                    rujes = [];
                 rootEl.find('.rules').html(' ');
-                var rujes = [];
+                
                 for(var i in rulez){
                     if(rulez[i].cssText){
                         var theText = rulez[i].cssText,
@@ -85,13 +95,15 @@
                 }
                 rujes.reverse();
                 for(var i in rujes){
-                    var string = rujes[i];
-                    var first = string.replace('{','{<div>');
-                    var last = first.replace('}','</div>}');
+                    var string = rujes[i],
+                        first = string.replace('{','{<div>'),
+                        last = first.replace('}','</div>}');
                     rootEl.find('.rules').append('<br/>'+last);    
                 }
                 if(rootEl.find('.rules').html() != ' ') { 
                     rootEl.find('.rules').show();
+                }else{ 
+                    rootEl.find('.rules').hide();
                 }
             });
         });

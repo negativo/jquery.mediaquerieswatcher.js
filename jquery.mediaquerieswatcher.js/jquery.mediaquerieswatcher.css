@@ -4,7 +4,9 @@
   font-size: 11pt;
   padding: 20px;
   width: 300px;
-  position: fixed;
+  position: absolute;
+  top: 20px;
+  left: 20px;
   background-color: rgba(28, 24, 9, 0.7);
   border: 1px solid rgba(84, 63, 22, 0.6);
   color: #81cccf;

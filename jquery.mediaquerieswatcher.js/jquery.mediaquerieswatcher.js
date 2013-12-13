@@ -46,7 +46,7 @@
                                 '<div class="rules"></div>'+
                             '</div>';
             $('body').append($(baseHtml));
-            $('#mediaquerieswatcher').addClass(base.options.position);
+            //$('#mediaquerieswatcher').addClass(base.options.position);
             rootEl = $('#mediaquerieswatcher');
             rootEl.find('.rules').hide();
         };
@@ -54,6 +54,7 @@
             base.options = $.extend( {}, $.mediaquerieswatcher.defaultOptions, options );
             base.setup();
             base.checkMedia();
+            rootEl.draggable();
         }();
         function getStylez(el){
             var comp = el.currentStyle || getComputedStyle(el, null);
@@ -110,7 +111,7 @@
     };
     $.mediaquerieswatcher.defaultOptions = {
         lib: "foundation5",
-        position: "top-center"  
+        //position: "top-center"  
     };
     $.fn.mediaquerieswatcher = function(options){
         return this.each(function(){

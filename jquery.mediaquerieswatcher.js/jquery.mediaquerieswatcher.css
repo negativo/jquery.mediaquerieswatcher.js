@@ -23,6 +23,9 @@
 #mediaquerieswatcher div span {
   color: #81cccf;
 }
+#mediaquerieswatcher.fixedpositioing {
+  position: fixed;
+}
 #mediaquerieswatcher.top-left {
   left: 20px;
   top: 20px;
@@ -102,4 +105,5 @@
 }
 #mediaquerieswatcher .rules div {
   color: #fcf1e5;
+  padding-left: 12px;
 }

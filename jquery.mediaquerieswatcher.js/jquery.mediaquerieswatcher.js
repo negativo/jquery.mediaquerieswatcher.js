@@ -1,5 +1,4 @@
 
-
 (function($,window,document){
     $.mediaquerieswatcher = function(options, el){
         var base = this,
@@ -30,31 +29,37 @@
             for(var i in theLib){
                 var thisMedia = theLib[i];
                 if(window.matchMedia('only screen '+thisMedia.rule).matches){
-                    rootEl.find('.content').html('<div><span>screen size: </span>'+thisMedia.name+'</div><div><span>actual pixels: </span>'+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'</div><div><span>responsive rule:</span>@media only screen '+thisMedia.rule+'</div>');
+                    rootEl.find('.content').html('<div class="mqw"><span class="mqw">screen size: </span>'+thisMedia.name+'</div><div class="mqw"><span class="mqw">actual pixels: </span>'+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'</div><div class="mqw"><span class="mqw">responsive rule:</span>@media only screen '+thisMedia.rule+'</div>');
                 }
             }                
         };
         base.setup = function(){
-            var baseHtml = '<div id="mediaquerieswatcher" >'+
-                                '<div class="buttons">'+
-                                    '<div class="maincolor"></div>'+
-                                    '<div class="secondarycolor"></div>'+
-                                    '<div class="thirdcolor"></div>'+
-                                    '<div class="fourthcolor"></div>'+
+            var baseHtml = '<div id="mediaquerieswatcher" class="mqw" >'+
+                                '<div class="mqw buttons">'+
+                                    '<div class="mqw maincolor"></div>'+
+                                    '<div class="mqw secondarycolor"></div>'+
+                                    '<div class="mqw thirdcolor"></div>'+
+                                    '<div class="mqw fourthcolor"></div>'+
                                 '</div>'+
-                                '<div class="content"></div>'+
-                                '<div class="rules"></div>'+
+                                '<div class="mqw content"></div>'+
+                                '<div class="mqw rules"></div>'+
                             '</div>';
             $('body').append($(baseHtml));
-            //$('#mediaquerieswatcher').addClass(base.options.position);
             rootEl = $('#mediaquerieswatcher');
+            if(base.options.positioning === 'fixed'){
+                rootEl.addClass('fixedpositioing');
+                rootEl.addClass(base.options.position);   
+            }
+            
             rootEl.find('.rules').hide();
         };
         base.init = function(){
             base.options = $.extend( {}, $.mediaquerieswatcher.defaultOptions, options );
             base.setup();
             base.checkMedia();
-            rootEl.draggable();
+            if(base.options.positioning === 'draggable'){
+                rootEl.draggable();    
+            }
         }();
         function getStylez(el){
             var comp = el.currentStyle || getComputedStyle(el, null);
@@ -79,39 +84,49 @@
         $('.buttons').find('div').click(function(){
             rootEl.css('background-color',$(this).css('background-color'));
         });
+
+        rootEl.find('.rules').delegate('.rule','click',function(e){
+            e.stopPropagation();
+            console.log('test, rule clicked ->'+ $(this).html());
+          
+        });
+
         $('*').each(function(){
-            $(this).click(function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                var rulez = window.getMatchedCSSRules(this),
-                    rujes = [];
-                rootEl.find('.rules').html(' ');
-                
-                for(var i in rulez){
-                    if(rulez[i].cssText){
-                        var theText = rulez[i].cssText,
-                            count = theText.match(/^(,*)/)[0].length;
-                        rujes.push(theText);
+            if(!$(this).hasClass('mqw')){
+                $(this).click(function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var rulez = window.getMatchedCSSRules(this),
+                        rujes = [];
+                    rootEl.find('.rules').html(' ');
+                    for(var i in rulez){
+                        if(rulez[i].cssText){
+                            var theText = rulez[i].cssText,
+                                count = theText.match(/^(,*)/)[0].length;
+                            rujes.push(theText);
+                        }
                     }
-                }
-                rujes.reverse();
-                for(var i in rujes){
-                    var string = rujes[i],
-                        first = string.replace('{','{<div>'),
-                        last = first.replace('}','</div>}');
-                    rootEl.find('.rules').append('<br/>'+last);    
-                }
-                if(rootEl.find('.rules').html() != ' ') { 
-                    rootEl.find('.rules').show();
-                }else{ 
-                    rootEl.find('.rules').hide();
-                }
-            });
+                    rujes.reverse();
+                    for(var i in rujes){
+                        var string = '<span class="rule">'+ rujes[i],
+                            first = string.replace('{','</span>{<div>'),
+                            last = first.replace('}','</div>}<br/>'),
+                            clean = last.replace( new RegExp("\\;","gm"),';<br/>');
+                        rootEl.find('.rules').append('<br/>'+clean);    
+                    }
+                    if(rootEl.find('.rules').html() != ' ') { 
+                        rootEl.find('.rules').show();
+                    }else{ 
+                        rootEl.find('.rules').hide();
+                    }
+                });
+            }         
         });
     };
     $.mediaquerieswatcher.defaultOptions = {
         lib: "foundation5",
-        //position: "top-center"  
+        positioning: "draggable", // draggable | absolute
+        position: "top-center"  
     };
     $.fn.mediaquerieswatcher = function(options){
         return this.each(function(){

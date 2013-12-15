@@ -33,6 +33,7 @@
                 }
             }                
         };
+
         base.setup = function(){
             var baseHtml = '<div id="mediaquerieswatcher" class="mqw" >'+
                                 '<div class="mqw buttons">'+
@@ -88,6 +89,11 @@
         rootEl.find('.rules').delegate('.rule','click',function(e){
             e.stopPropagation();
             console.log('test, rule clicked ->'+ $(this).html());
+          
+        });
+        rootEl.find('.rules').delegate('div','click',function(e){
+            e.stopPropagation();
+            console.log('test, rule clicked ->'+ $(this).parent().find('.rule').html());
           
         });
 

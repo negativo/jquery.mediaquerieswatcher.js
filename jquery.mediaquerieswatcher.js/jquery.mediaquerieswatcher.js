@@ -48,7 +48,7 @@
             $('body').append($(baseHtml));
             rootEl = $('#mediaquerieswatcher');
             if(base.options.positioning === 'fixed'){
-                rootEl.addClass('fixedpositioing');
+                rootEl.addClass('fixedpositioning');
                 rootEl.addClass(base.options.position);   
             }
             

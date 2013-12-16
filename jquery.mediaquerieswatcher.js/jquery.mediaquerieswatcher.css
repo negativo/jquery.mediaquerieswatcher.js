@@ -23,7 +23,7 @@
 #mediaquerieswatcher div span {
   color: #81cccf;
 }
-#mediaquerieswatcher.fixedpositioing {
+#mediaquerieswatcher.fixedpositioning.fixed {
   position: fixed;
 }
 #mediaquerieswatcher.top-left {

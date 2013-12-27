@@ -1,10 +1,109 @@
-#mediaquerieswatcher{
+#mediaquerieswatcher {
+  z-index: 1000;
   font-family: "Arial";
-  font-size:14pt;
-  padding:20px;
-  border:1px solid #000;
-  width:300px;
-  position:absolute;
-  left:20px;
-  top:20px;
+  font-size: 11pt;
+  padding: 20px;
+  width: 300px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(28, 24, 9, 0.7);
+  border: 1px solid rgba(84, 63, 22, 0.6);
+  color: #81cccf;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+#mediaquerieswatcher div {
+  clear: both;
+  color: #fcf1e5;
+}
+#mediaquerieswatcher div span {
+  color: #81cccf;
+}
+#mediaquerieswatcher.fixedpositioning.fixed {
+  position: fixed;
+}
+#mediaquerieswatcher.top-left {
+  left: 20px;
+  top: 20px;
+}
+#mediaquerieswatcher.top-center {
+  top: 20px;
+  left: 50%;
+  margin-left: -150px;
+}
+#mediaquerieswatcher.top-right {
+  right: 20px;
+  top: 20px;
+}
+#mediaquerieswatcher.middle-left {
+  left: 20px;
+  top: 50%;
+  margin-top: -150px;
+}
+#mediaquerieswatcher.middle-center {
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  margin-top: -150px;
+}
+#mediaquerieswatcher.middle-right {
+  right: 20px;
+  top: 50%;
+  margin-top: -150px;
+}
+#mediaquerieswatcher.bottom-left {
+  left: 20px;
+  bottom: 20px;
+}
+#mediaquerieswatcher.bottom-center {
+  left: 50%;
+  margin-left: -150px;
+  bottom: 20px;
+}
+#mediaquerieswatcher.bottom-right {
+  right: 20px;
+  bottom: 20px;
+}
+#mediaquerieswatcher .buttons,
+#mediaquerieswatcher .content {
+  clear: both;
+}
+#mediaquerieswatcher .buttons {
+  height: 20px;
+}
+#mediaquerieswatcher .buttons div {
+  clear: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  paddind: 1px;
+  border: 1px solid #fff;
+  float: left;
+  margin-left: 15px;
+}
+#mediaquerieswatcher .buttons div.maincolor {
+  background-color: rgba(28, 24, 9, 0.7);
+}
+#mediaquerieswatcher .buttons div.secondarycolor {
+  background-color: rgba(84, 63, 22, 0.6);
+}
+#mediaquerieswatcher .buttons div.thirdcolor {
+  background-color: rgba(19, 39, 54, 0.7);
+}
+#mediaquerieswatcher .buttons div.fourthcolor {
+  background-color: rgba(38, 30, 8, 0.7);
+}
+#mediaquerieswatcher .rules {
+  height: 200px;
+  overflow-y: scroll;
+  font-size: 10pt;
+  color: #5dcccf;
+}
+#mediaquerieswatcher .rules div {
+  color: #fcf1e5;
+  padding-left: 12px;
 }

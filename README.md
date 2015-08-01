@@ -14,3 +14,7 @@ jquery plugin to get a visual feedback for the media queries involved in the htm
 ##Code
 
 	$.mediaquerieswatcher({lib:'foundation5',position:'top-left'});
+
+##DEMO
+
+Open examples/index.html or  [Look at this demo](http://davideberardi.com/jquery.mediaquerieswatcher.js/examples/)

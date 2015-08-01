@@ -28,9 +28,11 @@
             var theLib = base.rules[base.options.lib];
             for(var i in theLib){
                 var thisMedia = theLib[i];
+
                 if(window.matchMedia('only screen '+thisMedia.rule).matches){
                     rootEl.find('.content').html('<div class="mqw"><span class="mqw">screen size: </span>'+thisMedia.name+'</div><div class="mqw"><span class="mqw">actual pixels: </span>'+thisMedia.info.replace('min-width','From').replace('and max-width','To').replace('max-width','Until')+'</div><div class="mqw"><span class="mqw">responsive rule:</span>@media only screen '+thisMedia.rule+'</div>');
                 }
+                $('body').find('.framework.mqw').html(base.options.lib);
             }                
         };
         base.setup = function(){
@@ -41,6 +43,7 @@
                                     '<div class="mqw thirdcolor"></div>'+
                                     '<div class="mqw fourthcolor"></div>'+
                                 '</div>'+
+                                '<div class="mqw framework"></div>'+
                                 '<div class="mqw content"></div>'+
                                 '<div class="mqw rules"></div>'+
                             '</div>';

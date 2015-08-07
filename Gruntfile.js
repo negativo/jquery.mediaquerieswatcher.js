@@ -31,10 +31,11 @@ module.exports = function(grunt) {
 	
 	watch:{
 		script:{
-			files:["examples/styles/less/*.less"],
+			files:["examples/**/**.*",],
 			tasks:["less","cssmin"],
 			options:{
-				spawn:false
+				spawn:false,
+				livereload:true
 			}
 		}
 	}   
@@ -46,5 +47,5 @@ module.exports = function(grunt) {
  grunt.loadNpmTasks('grunt-contrib-watch');
 
  //register
- grunt.registerTask('default', ['less','cssmin']);
+ grunt.registerTask('default', ['less','cssmin','watch']);
 };

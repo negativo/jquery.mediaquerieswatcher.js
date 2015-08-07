@@ -49,8 +49,14 @@ pre {
   height: 1px;
   background: #ffffff;
 }
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 .container-header {
-  background: #1976d2;
+  background: #2196f3;
   padding: 0;
   margin: 0;
   height: 300px;
@@ -68,10 +74,17 @@ pre {
   color: #ffffff;
   padding-top: 15px;
 }
+.container-header .header iframe {
+  margin: auto;
+}
 .container-body p {
   text-align: left;
   line-height: 175%;
 }
 .container-body h3 {
   margin: 25px 0;
+}
+footer {
+  background: #1976d2;
+  color: #ffffff;
 }

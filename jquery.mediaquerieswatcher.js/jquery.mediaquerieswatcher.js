@@ -74,6 +74,7 @@
             for(var i in allStyleSheets){
                 var sheet = allStyleSheets[i],
                     sheetRules=sheet.cssRules ? sheet.cssRules: sheet.rules;
+                    console.log("jquery.mediaquerieswatcher.js", i);
                 for (var j in sheetRules){
                     var sr = sheetRules[j],
                         text = sr.cssText;
@@ -143,4 +144,5 @@
             $this = $(this);
         });
     };
+
 })(jQuery,window,document);

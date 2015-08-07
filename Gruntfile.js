@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 	
 	watch:{
 		script:{
-			files:["examples/**/**.*",],
+			files:["examples/**/**.*","jquery.mediaquerieswatcher.js/**.**"],
 			tasks:["less","cssmin"],
 			options:{
 				spawn:false,

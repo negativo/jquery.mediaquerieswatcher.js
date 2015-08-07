@@ -87,4 +87,6 @@ pre {
 footer {
   background: #1976d2;
   color: #ffffff;
+  padding: 10px 0;
+  font-size: .8em;
 }

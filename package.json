@@ -1,0 +1,28 @@
+{
+  "name": "jquery.mediaquerieswatcher.js",
+  "version": "1.0.0",
+  "description": "##What",
+  "main": "Grunfile.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kirkhammetz/jquery.mediaquerieswatcher.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kirkhammetz/jquery.mediaquerieswatcher.js/issues"
+  },
+  "homepage": "https://github.com/Kirkhammetz/jquery.mediaquerieswatcher.js#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-less":"latest",
+    "grunt-contrib-cssmin":"latest",
+    "grunt-contrib-watch":"latest"
+  }
+}
